@@ -48,7 +48,7 @@ public class SendMail {
         props.put("mail.smtp.starttls.enable", true);
         props.put("mail.smtp.host", SMTP_HOST);
         props.put("mail.smtp.port", SMTP_PORT);
-       // props.put("mail.debug", "true");
+        props.put("mail.debug", "true");
 
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {
