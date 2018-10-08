@@ -45,7 +45,7 @@ private final FormProfil formProfil = new FormProfil(new FlowLayout(FlowLayout.L
     public FormUtama() {
         initComponents();
         treeMenuBase.TreeMenu(jTree1); 
-        lblVersi.setText("1");
+        lblVersi.setText("56");
         setExtendedState(MAXIMIZED_BOTH);
     }
     
