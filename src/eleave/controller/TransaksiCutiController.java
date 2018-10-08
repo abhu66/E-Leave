@@ -80,19 +80,7 @@ public class TransaksiCutiController extends  Base{
         t.setTanggaltolak(null);
         t.setTanggalbatal(null);
         transaksiCutiDaoImpl.simpan(t);
-        loadDefault();
-        
-        String subject = sendMailDaoImpl.getSubjectRequestCuti("MAIL_SUBJECT_REQUEST_CUTI");
-        String content = sendMailDaoImpl.getContentRequestCuti("MAIL_CONTENT_REQUEST_CUTI");
-        if(content.contains("{Manager}")){
-            content = content.replace("Manager", "Abu Khoerul");
-        }
-        String mailSmtp = "khoirulabhu@gmail.com";
-        sendMail.semdEmail(mailSmtp, subject, content);
-        
-        //create riwayatcuti
-        
-        RiwayatCuti riwayatCuti = new RiwayatCuti();
+         RiwayatCuti riwayatCuti = new RiwayatCuti();
         riwayatCuti.setNik_karyawan(t.getNik_karyawan());
         riwayatCuti.setTanggal_request(t.getTanggal_request());
         riwayatCuti.setAtasan_nik(t.getAtasan_nik());
@@ -107,8 +95,15 @@ public class TransaksiCutiController extends  Base{
         riwayatCuti.setTransaksicuti_id(t.getId()+1);
         //simpan riwayat
         riwayatCutiDaoImpl.saveRiwayatCuti(riwayatCuti);
+        loadDefault();
         
-      
+        String subject = sendMailDaoImpl.getSubjectRequestCuti("MAIL_SUBJECT_REQUEST_CUTI");
+        String content = sendMailDaoImpl.getContentRequestCuti("MAIL_CONTENT_REQUEST_CUTI");
+        if(content.contains("{Manager}")){
+            content = content.replace("Manager", "Abu Khoerul");
+        }
+        String mailSmtp = "khoirulabhu@gmail.com";
+        sendMail.semdEmail(mailSmtp, subject, content);
         
     }
     public void comboboxTipeCuti(){
@@ -241,10 +236,17 @@ public class TransaksiCutiController extends  Base{
             riwayatCuti.setTransaksicuti_id(riwayatCuti.getId());
             riwayatCutiDaoImpl.updateRiwayatCuti(riwayatCuti);
             loadDefaultApproval(); 
-        }
-        else {
-            errors("Transaksi sudah disetujui !");
-        }
+            String subject = sendMailDaoImpl.getSubjectRequestCuti("MAIL_SUBJECT_REQUEST_CUTI");
+            String content = sendMailDaoImpl.getContentRequestCuti("MAIL_CONTENT_APPROVE_CUTI");
+            if(content.contains("{Karyawan}")){
+                content = content.replace("{Karyawan}", tr.getNik_karyawan());
+            }
+            String mailSmtp = "khoirulabhu@gmail.com";
+            sendMail.semdEmail(mailSmtp, subject, content);
+            }
+            else {
+                errors("Transaksi sudah disetujui !");
+            }
        
     }
     public void tombolTolak(){
