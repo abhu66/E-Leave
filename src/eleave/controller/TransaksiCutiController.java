@@ -20,7 +20,6 @@ import eleave.setting.ui.ScheduledTask;
 import eleave.view.home.FormUtama;
 import eleave.view.karyawan.FormApproval;
 import eleave.view.karyawan.FormCuti;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -165,7 +164,7 @@ public class TransaksiCutiController extends  Base{
         formApproval.jTabbedPane1.add("Informasi", formApproval.jPanel1);
         TransaksiCuti tr = transaksiCutiDaoImpl.findById(Integer.valueOf(formApproval.jTable1.getValueAt(baris, 0).toString()));
         if(tr != null){
-            if(tr.getStatus().equalsIgnoreCase("Dibatalkan")){
+            if(tr.getStatus().equalsIgnoreCase("Dibatalkan") || tr.getStatus().equalsIgnoreCase("Ditolak")){
                 formApproval.btnSetujui.setEnabled(false);
                 formApproval.btnBatalkan.setEnabled(false);
                 formApproval.btnTolak.setEnabled(false);

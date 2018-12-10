@@ -6,8 +6,6 @@
 package eleave.sendMail;
 
 import eleave.daoImpl.SendMailDaoImpl;
-import eleave.model.Karyawan;
-import java.io.File;
 import java.util.*;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -79,7 +77,6 @@ public class SendMail {
 
             message.setContent(multipart);
             Transport.send(message);
-
             System.out.println("Done");
 
         } catch (MessagingException e) {

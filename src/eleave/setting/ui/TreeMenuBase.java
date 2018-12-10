@@ -55,7 +55,9 @@ public class TreeMenuBase extends Base{
         Menu[] hrd = new Menu[]{
             new Menu(Menus.Karyawan.name().replace("_"," "),""),
             new Menu(Menus.Kategori_Cuti.name().replace("_"," "),""),
-            new Menu(Menus.Management_User.name().replace("_"," "),"")
+            new Menu(Menus.Management_User.name().replace("_"," "),""),
+            new Menu(Menus.Laporan_Cuti.name().replace("_"," "),""),
+            
         };
         for(Menu menu : hrd){
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(menu);

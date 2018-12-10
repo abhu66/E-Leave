@@ -16,7 +16,6 @@ public enum Menus {
     Kategori_Cuti,
     Karyawan,
     Management_User,
-    Keluar
-
-    
+    Keluar,
+    Laporan_Cuti
 }
